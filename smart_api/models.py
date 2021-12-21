@@ -17,7 +17,7 @@ class Iot_device(models.Model):
 class Iot_dots(models.Model):
    
     measure_date=models.DateTimeField(auto_now_add=True)
-    value=models.ForeignKey(Inventory, on_delete=SET_NULL, null=True)
+    value=models.FloatField(default="None")
     measure=models.CharField(max_length=250,default="None")
     device=models.ForeignKey(Iot_device, on_delete=SET_NULL, null=True)
  
