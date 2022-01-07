@@ -34,7 +34,7 @@ class Dot_Graph (APIView):
         
         for tuple in dots:
             dict3 = {}
-            dict3["x"] = tuple["measure_date"]
+            dict3["x"] = tuple["id"]
             dict3["y"] = tuple["value"]
             points.append(dict3)
             
