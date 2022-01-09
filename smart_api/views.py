@@ -19,6 +19,7 @@ class Create_dot(APIView):
   def get(self, request):
 
     content="si llego"
+      #se agrega consideracion de codigo
 
     return Response(content, status=status.HTTP_200_OK)
 
