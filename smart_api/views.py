@@ -21,6 +21,8 @@ class Create_dot(APIView):
     content="si llego"
       #se agrega consideracion de codigo
       #debo empezar el codigo de  recuperacion del correo
+      #debo empezar el codigo de  recuperacion del correo
+
 
     return Response(content, status=status.HTTP_200_OK)
 
