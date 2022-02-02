@@ -8,6 +8,7 @@ from smart_api.models import *
 
 class Create_dot(APIView):
   def post(self, request):
+    print(request.data)
 
     device_id=request.data["device_id"]
     value=request.data["value"]
