@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from smart_api.models import *
 # Create your views here.
+#agregar arquitectura de guardado de fases
 
 
 class Create_dot(APIView):
