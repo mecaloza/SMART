@@ -34,19 +34,23 @@ class Create_dot(APIView):
 
 class Dot_Graph (APIView):
 
-    def get(self, request):
+    def get(self, request,codigo):
 
         content = {}
         points = []
 
+        
+        cont_point=1
 
         dots = Iot_dots_ampers.objects.all().values()
         
         for tuple in dots:
             dict3 = {}
-            dict3["x"] = tuple["id"]
-            dict3["y"] = tuple["value"]
+            dict3["name"] = cont_point
+            dict3["Fase_1"] = tuple["value_amper"]
+            dict3["Fase_2"] = tuple["value_volt"]
             points.append(dict3)
+            cont_point=cont_point+1
             
         content["points"]=points
  
