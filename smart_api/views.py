@@ -40,7 +40,7 @@ class Dot_Graph (APIView):
         points = []
 
 
-        dots = Iot_dots.objects.all().values()
+        dots = Iot_dots_ampers.objects.all().values()
         
         for tuple in dots:
             dict3 = {}
