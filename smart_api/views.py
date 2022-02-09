@@ -14,7 +14,9 @@ class Create_dot(APIView):
     device_id=request.data["device_id"]
     value=request.data["value"]
     measure=request.data["measure"]
-    Iot_dots.objects.create(value=value,device_id=device_id,measure=measure)
+    value_volt=request.data["volt"]
+
+    Iot_dots_ampers.objects.create(value_amper=value,device_id=device_id,measure_amper=measure,measure_volt="voltaje",value_volt=value_volt)
 
     return Response( status=status.HTTP_200_OK)
 
