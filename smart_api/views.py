@@ -1,3 +1,4 @@
+from this import d
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -23,12 +24,8 @@ class Create_dot(APIView):
   def get(self, request):
 
     content="si llego"
-      #se agrega consideracion de codigo
       #debo empezar el codigo de  recuperacion del correo
-      #debo empezar el codigo de  recuperacion del correo
-
- 
-
+  
 
     return Response(content, status=status.HTTP_200_OK)
 
@@ -42,15 +39,34 @@ class Dot_Graph (APIView):
         
         cont_point=1
 
-        dots = Iot_dots_ampers.objects.all().values()
+        dots = Iot_dots_ampers.objects.filter(device_id=1)
+        dots_2 = Iot_dots_ampers.objects.filter(device_id=2)
+        print(len(dots))
+        print(len(dots_2))
+        print(request.query_params.get('dots'))
+
+        dot_query=request.query_params.get('dots')
+        min=0
+        max=1000
+        if(dot_query=="1"):
+          min=0
+          max=1000
+        elif(dot_query=="2"):
+          print("aqui")
+          min=1000
+          max=2000
+          
         
-        for tuple in dots:
+        for cont_point in range(min, max, 1):
             dict3 = {}
             dict3["name"] = cont_point
-            dict3["Fase_1"] = tuple["value_amper"]
-            dict3["Fase_2"] = tuple["value_volt"]
+            dict3["Fase_1"] = (dots[cont_point].value_amper)/1000
+            dict3["Fase_2"] = (dots_2[cont_point].value_amper)/1000
+            # dict3["Fase_1"] = (tuple.value_volt)
+            # dict3["Fase_2"] = (dots_2[cont_point].value_volt)
             points.append(dict3)
-            cont_point=cont_point+1
+            
+            # print(cont_point)
             
         content["points"]=points
  
