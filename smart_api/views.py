@@ -53,15 +53,11 @@ class Dot_Graph (APIView):
         print(request.query_params.get('dots'))
 
         dot_query=request.query_params.get('dots')
-        min=0
-        max=1000
-        if(dot_query=="1"):
-          min=0
-          max=1000
-        elif(dot_query=="2"):
-          print("aqui")
-          min=1000
-          max=2000
+        
+      
+        min=(int(dot_query)-1)*1000
+        max=min+1000
+      
           
         
         for cont_point in range(min, max, 1):
@@ -76,6 +72,10 @@ class Dot_Graph (APIView):
             # print(cont_point)
             
         content["points"]=points
+        content["max"]=max
+        content["min"]=min
+
+        
  
         return Response(content, status=status.HTTP_200_OK)
 
