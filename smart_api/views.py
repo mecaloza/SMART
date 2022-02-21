@@ -46,10 +46,17 @@ class Dot_Graph (APIView):
         
         cont_point=1
 
-        dots = Iot_dots_ampers.objects.filter(device_id=1)
-        dots_2 = Iot_dots_ampers.objects.filter(device_id=2)
+        dots = Iot_dots_ampers.objects.filter(device_id=1).order_by('-id')[:2500][::-1]
+        dots_2 = Iot_dots_ampers.objects.filter(device_id=2).order_by('-id')[:2500][::-1]
+        dots_3 = Iot_dots_ampers.objects.filter(device_id=3).order_by('-id')[:2500][::-1]
+
         print(len(dots))
         print(len(dots_2))
+        print(len(dots_3))
+        dif_points=len(dots_3)
+
+        
+
         print(request.query_params.get('dots'))
 
         dot_query=request.query_params.get('dots')
@@ -60,11 +67,16 @@ class Dot_Graph (APIView):
       
           
         
-        for cont_point in range(min, max, 1):
+        for cont_point in range(0, 2500, 1):
             dict3 = {}
+            print("fecha",dots[cont_point].measure_date)
             dict3["name"] = cont_point
             dict3["Fase_1"] = (dots[cont_point].value_amper)/1000
             dict3["Fase_2"] = (dots_2[cont_point].value_amper)/1000
+            dict3["Fase_3"] = (dots_3[cont_point-dif_points].value_amper)/1000
+
+            dict3["fecha"] = dots_2[cont_point].measure_date
+
             # dict3["Fase_1"] = (tuple.value_volt)
             # dict3["Fase_2"] = (dots_2[cont_point].value_volt)
             points.append(dict3)
