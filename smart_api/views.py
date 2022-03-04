@@ -92,4 +92,27 @@ class Dot_Graph (APIView):
  
         return Response(content, status=status.HTTP_200_OK)
 
+class Tag_Graph (APIView):
+
+    def get(self, request):
+      content={}  
       
+
+      tag_number=Iot_tag_dot.objects.latest('id')
+      
+      content["tag"]=tag_number.tag_number
+
+
+
+      return Response(content, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+      content={}
+      device_id=request.data["device_id"]
+      tag_number=request.data["tag_number"]
+      
+      Iot_tag_dot.objects.create(tag_number=int(tag_number),device_id=device_id)
+
+        
+ 
+      return Response(content, status=status.HTTP_200_OK)
